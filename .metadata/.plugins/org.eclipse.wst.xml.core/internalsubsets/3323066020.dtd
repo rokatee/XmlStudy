@@ -1,0 +1,11 @@
+
+<!ELEMENT memberList (memberInfo+)>
+<!ELEMENT memberInfo (name, tel, email, curriculumn?, addr)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT tel (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT curriculumn (sub+)>
+<!ELEMENT sub (#PCDATA)>
+<!ELEMENT addr (#PCDATA)>
+<!ATTLIST memberInfo mid CDATA #IMPLIED>
+<!-- └→ memberInfo에 mid가 CDATA 형식으로 있는데 이 값은 넣어도 되고 안 넣어도 된다. -->
