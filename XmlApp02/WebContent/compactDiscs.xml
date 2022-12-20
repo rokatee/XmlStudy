@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- DTO 구성 -->
+<!DOCTYPE compactDiscs
+[
+<!ELEMENT compactDiscs (compactDisc+)>
+<!ELEMENT compactDisc (artist, title, tracks, price)>
+<!ELEMENT artist (#PCDATA)>
+<!ATTLIST artist type (individual | band) #REQUIRED>
+			<!-- ㄴtype 속성으로 individual 혹은 band 를 넣을 수 있다. -->
+<!ELEMENT title (#PCDATA)>
+<!ATTLIST title numberOfTracks CDATA #REQUIRED>
+<!ELEMENT tracks (track+)>
+<!ELEMENT price (#PCDATA)>
+<!ELEMENT track (#PCDATA)>
+]>
+
+<!-- 위 DTO 내용을 토대로 XML 문서를 완성한다 -->
+<!-- 데이터는 자신이 좋아하는 가수의 곡 정보를 5곡 이상 등록한다. -->
+<compactDiscs>
+	<compactDisc>
+		<artist type="band">aespa</artist>
+		<title numberOfTracks="1">Girls</title>
+		<tracks>
+			<track>Girls</track>
+			<track>도깨비불</track>
+			<track><![CDATA[Life′s Too Short]]></track>
+			<track>쉬어가도 돼</track>
+		</tracks>
+		<price><![CDATA[20,000]]></price>
+	</compactDisc>
+	
+	<compactDisc>
+		<artist type="band">NewJeans</artist>
+		<title numberOfTracks="2"><![CDATA[NewJeans 1st EP 'New Jeans']]></title>
+		<tracks>
+			<track>Attention</track>
+			<track>Hype boy</track>
+			<track>Cookie</track>
+			<track>Hurt</track>
+		</tracks>
+		<price><![CDATA[11,000]]></price>
+	</compactDisc>
+	
+	<compactDisc>
+		<artist type="individual">허각</artist>
+		<title numberOfTracks="3"><![CDATA[LIKE 1st MINI ALBUM 'First Story']]></title>
+		<tracks>
+			<track>Hello</track>
+			<track>니가 그립다</track>
+			<track>평생의 전부</track>
+		</tracks>
+		<price><![CDATA[10,000]]></price>
+	</compactDisc>
+	
+</compactDiscs>
+
+
+
+
+
+
+
