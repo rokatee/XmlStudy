@@ -93,9 +93,10 @@ public class XmlDomTest01
 				// 특정 element 로 nodelist 얻어내고
 				// item이라는 메소드 사용해서 index 기반으로 접근해서 node 얻어내고
 				// 그 node를 Element로 캐스팅함
-				/*
+				
 				NodeList makeNodeList = vehicleElement.getElementsByTagName("MAKE");
 				Node makeNode = makeNodeList.item(0);
+				
 				Element makeElement = (Element)makeNode;
 				System.out.printf("%s : %s\n"
 					 		 , makeElement.getNodeName()
@@ -107,11 +108,11 @@ public class XmlDomTest01
 				System.out.printf("%s : %s\n\n"
 						 		 , modelElement.getNodeName()
 						 		 , modelElement.getTextContent());
-				*/
+				
 				 
 				// 일일히 이렇게 만드는 거 귀찮으니까 
 				// 아래에 아예 메소드로 만들어두자
-				
+				/*
 				// 특정 엘리먼트의 텍스트 데이터를 얻는
 				// 사용자 정의 메소드 『getText()』 호출
 				System.out.printf("%s %s %s %s %s\n"
@@ -119,7 +120,7 @@ public class XmlDomTest01
 					 		 , getText(vehicleElement, "MODEL")
 					 		 , getText(vehicleElement, "YEAR")
 					 		 , getText(vehicleElement, "PICTURE")
-					 		 , getText(vehicleElement, "STYLE"));
+					 		 , getText(vehicleElement, "STYLE"));*/
 				
 				// 이런식으로 final project에서 사용해야되는 경우 많을 거임
 			}
@@ -130,7 +131,7 @@ public class XmlDomTest01
 		}
 		
 	}// end main()
-	
+	/*
 	// 위에 있는 구조를 메소드로 뽑아냄
 	private static String getText(Element parent, String tagName)
 	{
@@ -147,7 +148,7 @@ public class XmlDomTest01
 		// 결과값 반환
 		return result;
 		
-	}
+	}*/
 }
 
 

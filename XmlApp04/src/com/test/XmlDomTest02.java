@@ -11,7 +11,6 @@ package com.test;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -22,8 +21,8 @@ public class XmlDomTest02
 {
 	public static void main(String[] args) 
 	{	
-		// 김민성 010-1213-4546
-		// 김상기 010-5678-6789
+		// 김태민 010-1212-3434
+		// 유동현 010-7878-8989
 		// 나오게끔 출력해보자
 		
 		// 1. XML 파일(memberList.xml)을 메모리에 로드
@@ -33,12 +32,12 @@ public class XmlDomTest02
 		//    → 위치, 이름 등을 기준으로 접근(사실상 문법적으로 다양한 접근 방법 지원)
 		// 4.  텍스트 노드(속성 노드) 접근
 		//     → 원하는 데이터 얻어내기
-		// 5. 결과 처리 
-		 //   → 출력
+		// 5. 결과 출력
 		
 		try
 		{
 			// XML DOM 형성을 위해 필요한 리소스 구성/준비
+			// DocumentBuilderFactory → DocumentBuilder → XML
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document xmlObj = null;
@@ -68,8 +67,6 @@ public class XmlDomTest02
 			
 			// 이렇게 얻어낸 NodeList 객체에 포함되어 있는 Node 의 개수를 
 			// 『getLength()』 메소드를 통해 확인할 수 있다.
-		
-			
 			// 테스트
 			//System.out.println(memberInfoNodeList.getLength());
 			//--==>> 2
@@ -92,8 +89,8 @@ public class XmlDomTest02
 				// ↑ XmlDomTest01.java 와 여기까지는 같은 내용
 				//--==>> 여기까지해서 출력한 내용
 				/*
-				// 김민성 010-1213-4546
-				// 김상기 010-5678-6789
+				// 김태민 010-1212-3434
+				// 유동현 010-7878-8989
 				*/
 				
 				// 커리큘럼에 대한 처리 추가 --------------------------------------------------
@@ -126,9 +123,9 @@ public class XmlDomTest02
 						Element subElement = (Element)subNode;
 						System.out.printf("%s ", subElement.getTextContent());
 						//--==>>
-						//김상기 010-1213-4546
+						// 김태민 010-1212-3434
 						//JAVA SE ORACLE Servlet&JSP 
-						//김민성 010-5678-6789
+						// 유동현 010-7878-8989
 					 */
 					
 					// ★방법 2. Node Type 이용하는 방법
@@ -149,13 +146,16 @@ public class XmlDomTest02
 					 10				DOCUMENT_TYPE_NODE
 					 11				DOCUMENT_FRAGMENT_NODE
 					 12				NOTATION_NODE
-					 13
 					----------------------------------------------------- 
 					*/
 					
 					//커리큘럼의 자식노드로부터 자식을 얻어냄
 					NodeList subNodeList = curriculumnElement.getChildNodes();			// check~!!!
 					//-- 결과적으로 NodeList 얻어낸다는 건 똑같음
+					
+					// 테스트
+					//System.out.println(subNodeList.getLength());
+					//--==>> 7
 					
 					for (int m = 0; m < subNodeList.getLength(); m++)
 					{
@@ -166,15 +166,12 @@ public class XmlDomTest02
 						if (subNode.getNodeType() == 1 )		// ELEMENT_NODE			// check~!!!
 						{
 							Element subElement = (Element)subNode;
-							System.out.printf("%s", subElement.getTextContent());
+							System.out.printf("%s ", subElement.getTextContent());
 						}
-						System.out.println();
 					}
-					
+					System.out.println();
+					System.out.println("-------------------------------");
 				}
-				
-				
-				
 				// -------------------------------------------------- 커리큘럼에 대한 처리 추가
 			}
 			
@@ -183,13 +180,13 @@ public class XmlDomTest02
 			System.out.println(e.toString());
 			
 		}
-	}// end main()
+	} // end main()
 	
 	private static String getText(Element parent, String tagName)
 	{
 		String result = "";
 		
-		// 대상 태그(tagName) 객체의 첫 번째 자식 노드 얻어오개
+		// 대상 태그(tagName) 객체의 첫 번째 자식 노드 얻어오기
 		Node node = parent.getElementsByTagName(tagName).item(0);
 		Element element = (Element)node;
 		

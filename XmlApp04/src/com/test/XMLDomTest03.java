@@ -63,7 +63,7 @@ public class XMLDomTest03
 			{
 				Node foodNode = foodNodeList.item(i);
 				
-				//  캐스팅
+				// 캐스팅
 				Element foodElement = (Element)foodNode;
 				
 				System.out.printf("■ [%s]   %s   %s칼로리\n - %s\n"
@@ -84,7 +84,7 @@ public class XMLDomTest03
 	{
 		String result = "";
 		
-		// 대상 태그(tagName) 객체의 첫 번째 자식 노드 얻어오개
+		// 대상 태그(tagName) 객체의 첫 번째 자식 노드 얻어오기
 		Node node = parent.getElementsByTagName(tagName).item(0);
 		Element element = (Element)node;
 		
