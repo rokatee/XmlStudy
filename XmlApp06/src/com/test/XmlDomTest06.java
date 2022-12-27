@@ -132,8 +132,7 @@ public class XmlDomTest06
 					Node locationNode = locationNodeList.item(i);
 					Element locationElement = (Element)locationNode;
 					
-					System.out.printf("도시 : %s\n"
-							  		 , XMLDOM.getText(locationElement, "city"));
+					System.out.printf("도시 : %s\n", XMLDOM.getText(locationElement, "city"));
 					System.out.println("--------------------------------------------------------");
 					NodeList dataNodeList = locationElement.getElementsByTagName("data");
 					
@@ -152,7 +151,7 @@ public class XmlDomTest06
 					System.out.println("--------------------------------------------------------");
 				}
 				System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------------");
-				
+			
 			} catch (Exception e)
 			{
 				System.out.println(e.toString());
