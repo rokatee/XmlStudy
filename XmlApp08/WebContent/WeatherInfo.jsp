@@ -2,15 +2,17 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.test.WeatherDAO"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	String cp = request.getContextPath();
 %>
 <%
+	// 이전 페이지(WeatherInfo.jsp, 자기 자신 페이지) 로부터 데이터 수신
+	//-- 사용자가 선택한 지역 데이터 수신
+
 	// 사용자가 선택한 지역 데이터 수신
 	String stnId = request.getParameter("stnId");
-
+	
 	if (stnId==null)
 		stnId = "108";		//-- 전국 날씨 정보
 		
@@ -25,6 +27,7 @@
 	
 	// 도시 정보 및 날짜 시간 별 날씨 정보
 	ArrayList<String> cityList = dao.weatherCityList();
+	
 	for(int i=0; i<cityList.size(); i++)
 	{
 		sb.append(String.format("<h3>%s<h3>", cityList.get(i)));
@@ -44,10 +47,10 @@
 		for (WeatherDTO w : weatherList)
 		{
 			sb.append("<tr>");
-			sb.append(String.format("<td>%s</td>", w.getTmEf()));						// 날짜
-			sb.append(String.format("<td><img src='images/%s'/> %s</td>", w.getImg(), w.getWf()));							// 날씨
-			sb.append(String.format("<td>%s℃ / %s℃</td>", w.getTmn(), w.getTmx()));	// 최저/최고 기온
-			sb.append(String.format("<td>%s</td>", w.getRnSt()));						// 강수확률
+			sb.append(String.format("<td>%s</td>", w.getTmEf()));									// 날짜
+			sb.append(String.format("<td><img src='images/%s'/> %s</td>", w.getImg(), w.getWf()));	// 날씨
+			sb.append(String.format("<td>%s℃ / %s℃</td>", w.getTmn(), w.getTmx()));				// 최저/최고 기온
+			sb.append(String.format("<td>%s%%</td>", w.getRnSt()));									// 강수확률
 			sb.append("</tr>");
 		}
 		
@@ -59,13 +62,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>기상청 육상 중기 예보(Weather.jsp)</title>
+<title>기상청 육상 중기 예보(WeatherInfo.jsp)</title>
+<!-- 제이쿼리 -->
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <!-- 부트스트랩 3.3.2 CDN -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/main.css">
-<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function()

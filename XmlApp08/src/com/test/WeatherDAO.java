@@ -75,7 +75,7 @@ public class WeatherDAO
 		
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
-		// Line 67, 68 한줄로 하면
+		// ↓↓ 한 줄로 바꾸면... ↓↓
 		// DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 		
 		String str = String.format
@@ -99,7 +99,7 @@ public class WeatherDAO
 		     XPath 를 생성해주는 XPathFactory 를 생성하고
 		   - 이 XPathFactory 의 정적 메소드(static) 『newXPath()』 호출을 통해
 		     XPath 객체를 생성한다. 
-		     
+			
 		 ○ 노드 선택(Selecting Nodes)
 		    - 브라우저마다 XPath 를 처리하는 방법에서 차이를 보인다.
 		    - Chrome, Firefox, Edge, Opera, Safari 등은
@@ -148,7 +148,7 @@ public class WeatherDAO
 	
 	/*
 	 이거 표현하자
-	 <wf>
+	<wf>
 		<![CDATA[ ○ (강수) 20일(월) 오후 제주도, 21일(화)~22일(수) 오전 남부지방과 제주도에 비가 오겠고, 제주도는 23일(목) 오전까지 이어지겠습니다. <br /> 24일(금)~25일(토) 충청권과 남부지방에 비가 오겠고, 26일(일)~27일(월)은 제주도에 비가 오겠습니다. <br />○ (기온) 아침 기온은 19~23도, 낮 기온은 25~33도로 어제(16일, 아침최저기온 16~20도, 낮최고기온 22~29도)보다 높겠습니다.<br />○ (해상) 21일(화)~23일(목)과 24일(금)~26일(일)은 서해남부해상과 제주도해상, 남해상, 동해남부해상을 중심으로 바람이 매우 강하게 불고 물결이 2.0~4.0m로 높게 일겠습니다. <br /><br />* 북태평양고기압의 확장 정도와 북서쪽에서 남쪽으로 내려오는 찬 공기의 강도에 따라 20일(월) 이후 강수 변동성이 크겠으니, 앞으로 발표되는 예보와 기상정보를 참고하기 바랍니다. ]]>
 	</wf> 
 	*/
@@ -157,7 +157,7 @@ public class WeatherDAO
 		String result = "";
 		
 		result = xPath.compile("/rss/channel/item/description/header/wf").evaluate(xmlObj);
-				
+		
 		return result;
 	}
 	//-- XML 파일 당 1개 뽑음
@@ -200,7 +200,6 @@ public class WeatherDAO
 	}
 	//-- XML 파일 당 여러 개 뽑음 → 자료구조 arrayList 사용	
 	
-	
 	// check~!!!
 	// 날씨 정보 리스트
 	public ArrayList<WeatherDTO> weatherList(String idx) throws XPathExpressionException
@@ -221,22 +220,22 @@ public class WeatherDAO
 					.compile(String.format("/rss/channel/item/description/body/location[%s]/data[%s]/tmEf"
 							, idx, i)).evaluate(xmlObj);
 			
-			// wf
+			// wf		→ 날씨예보 태그
 			String wf = xPath
 					.compile(String.format("/rss/channel/item/description/body/location[%s]/data[%s]/wf"
 							, idx, i)).evaluate(xmlObj);
 			
-			// tmn
+			// tmn		→ 최저온도 태그 (5 → 5℃)
 			String tmn = xPath
 					.compile(String.format("/rss/channel/item/description/body/location[%s]/data[%s]/tmn"
 							, idx, i)).evaluate(xmlObj);
 			
-			// tmx
+			// tmx		→ 최고온도 태그 (5 → 5℃)
 			String tmx = xPath
 					.compile(String.format("/rss/channel/item/description/body/location[%s]/data[%s]/tmx"
 							, idx, i)).evaluate(xmlObj);
 			
-			// rnSt
+			// rnSt		→ 강수확률 태그 (40 → 40%)
 			String rnSt = xPath
 					.compile(String.format("/rss/channel/item/description/body/location[%s]/data[%s]/rnSt"
 							, idx, i)).evaluate(xmlObj);
@@ -255,9 +254,3 @@ public class WeatherDAO
 		return result;
 	}
 }
-
-
-
-
-
-
